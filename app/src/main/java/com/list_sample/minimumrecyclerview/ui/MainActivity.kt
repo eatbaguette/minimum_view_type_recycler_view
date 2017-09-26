@@ -32,9 +32,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareData() {
+        // データを作成
         for (i in 0 .. 100) {
             val item = Items(i.toString())
             itemList.add(item)
         }
+
+        // 更新
+        adapter.notifyDataSetChanged()
     }
 }
