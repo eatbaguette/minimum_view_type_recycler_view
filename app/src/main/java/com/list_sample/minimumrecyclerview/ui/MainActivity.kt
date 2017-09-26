@@ -7,11 +7,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.list_sample.minimumrecyclerview.R
 import com.list_sample.minimumrecyclerview.adapter.RecyclerViewAdapter
-import com.list_sample.minimumrecyclerview.model.Items
+import com.list_sample.minimumrecyclerview.model.EvenNumberModel
+import com.list_sample.minimumrecyclerview.model.OddNumberModel
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private var itemList = ArrayList<Items> ()
+    private var itemList = ArrayList<Any> ()
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: RecyclerViewAdapter
 
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recycler_view) as RecyclerView
 
-        adapter = RecyclerViewAdapter(itemList)
+        adapter = RecyclerViewAdapter(this, itemList)
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
@@ -33,9 +34,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun prepareData() {
         // データを作成
-        for (i in 0 .. 100) {
-            val item = Items(i.toString())
-            itemList.add(item)
+        for (i in 1 .. 100) {
+            if (i % 2 == 0) {
+                val item = EvenNumberModel(i.toString())
+                itemList.add(item)
+            } else {
+                val item = OddNumberModel(i.toString())
+                itemList.add(item)
+            }
         }
 
         // 更新
