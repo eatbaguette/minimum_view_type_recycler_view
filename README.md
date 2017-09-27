@@ -1,0 +1,1 @@
+ViewTypeで表示するセルを分けるRecyclerViewの最小限の構成
